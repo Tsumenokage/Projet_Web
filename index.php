@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Site de création d'évènements</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="menu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <header>
@@ -22,7 +23,7 @@
                 <a href="about.php">A propos</a>
             </li>
         </ul>
-        <a id="connectionUtilisateur" href="connexion.php">Se connecter</a>
+        <a id="connectionUtilisateur" href="Connexion.php">Se connecter</a>
     </div>
 </header>
 

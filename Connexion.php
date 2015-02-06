@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Site de création d'évènements</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="menu.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <header>
@@ -26,7 +28,16 @@
     </div>
 </header>
 
+<div id="container">
+            <h1>Connexion à votre compte personnel</h1>
+            <p class="center letterSpacing"><a href="inscription.php" class="lightColor">Pas de compte ?</a></p>
 
+            <form id="formConnexion" method="post" action="traitement_connexion.php">
+                <input type="text" name="pseudo" placeholder="PSEUDO : prof"/>
+                <input type="password" name="pass" placeholder="MOT DE PASSE : prof" />
+                <input class="submit" type="submit" value="Se Connecter" />
+            </form>
+</div>
 
 
 <footer>

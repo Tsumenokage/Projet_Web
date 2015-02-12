@@ -4,17 +4,32 @@
 $loginUser = $_POST['pseudo'];
 $passUser = $_POST['pass'];
 
-echo($loginUser);
+$passUser = md5($passUser);
+
 echo($passUser);
 
 $Server = "localhost";
 $login="root";
 $MDP="";
-$MaBase="projet_web"
+$MaBase="projet_web";
 
 $Connexion = mysql_connect($Server,$login,$MDP);
+mysql_select_db($MaBase);
+
+$Requete = "SELECT * FROM utilisateurs WHERE Login = '$loginUser' AND Pasword = '$passUser'";
+$Res = mysql_query($Requete,$Connexion) or die('Erreur SQL !<br />'.$Requete.'<br />'.mysql_error());
 
 
+if(mysql_num_rows($Res) != 0)
+{
+	$Res = mysql_fetch_array($Res);
+	print_r($Res);
+	echo("Connexion OK!!");
+}
+else
+{
+	header("Location:Connexion.php?WrongPass=1");
+}
 
 
 

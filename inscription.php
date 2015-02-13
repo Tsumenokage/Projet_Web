@@ -2,9 +2,9 @@
 <form
 method= 'post' action='TraiteInscription.php'/>
 <label >Login:<input type = "text" name = "login"><br/>
-<label>Mot de passe:<input type = "text" name = "mdp"><br/>
-<label>Confirmation du mot de passe<input type = "text" name = "mdp"><br/>confirmation du mot de passe
-<input type = "text" name = "email"><br/>
+<label>Mot de passe:<input type = "text" name = "mdp"></label><br/>
+<label>Confirmation du mot de passe<input type = "text" name = "mdp"></label><br/>
+<label>Email<input type = "text" name = "email"></label><br/>
 <input type = "submit" value = "Valider">
 <?php 
 if(isset($_GET['LoginExist']))

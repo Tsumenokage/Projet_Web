@@ -7,16 +7,18 @@ $Server = "localhost";
 $login="root";
 $MDP="";
 
-$login = $_POST["login"];
-$mail = $_POST['email'];
-$mdp=md5($_POST['mdp']);
+$loginUser = $_POST["login"];
+$mailUser = $_POST['email'];
+$mdpUser=md5($_POST['mdp']);
 
 $Connexion = mysql_connect($Server,$login,$MDP);
-mysql_select_db('projet_web');
-$sql  = "SELECT Login FROM utilisateurs WHERE Login='$login'";
-$sql2 = "SELECT mail FROM utilisateurs WHERE mail='$mail'";
-$res=mysql_query($sql,$Connexion) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
-$res2=mysql_query($sql2,$Connexion) or die('Erreur SQL !'.$sql2.'<br />'.mysql_error());
+mysql_select_db($MaBase);
+
+$sql  = "SELECT Login FROM utilisateurs WHERE Login='$loginUser'";
+$sql2 = "SELECT mail FROM utilisateurs WHERE mail='$mailUser'";
+
+$res=mysql_query($sql,$Connexion) or die('Erreur SQL 1 !'.$sql.'<br />'.mysql_error());
+$res2=mysql_query($sql2,$Connexion) or die('Erreur SQL 2!'.$sql2.'<br />'.mysql_error());
 
 if(mysql_num_rows($res)!=0)
 {
@@ -28,7 +30,8 @@ else if(mysql_num_rows($res2)!=0)
 }
 else
 {
-	$ReqBase = 'INSERT INTO utilisateurs VALUES ($login,$mdp,$mail)';
+	$ReqBase = "INSERT INTO utilisateurs VALUES (null,'$loginUser','$mdpUser','$mailUser','tata','yoyo')";
+	$Res3 = mysql_query($ReqBase,$Connexion) or die('Erreur SQL 1 !'.$ReqBase.'<br />'.mysql_error());
  
 }
 mysql_close();

@@ -1,8 +1,4 @@
-<html>
-<head>
-	<title> Formulaire inscription</title>
-</head>
-<body>
+<?php include('include/menu.php'); ?>
 <form
 method= 'post' action='TraiteInscription.php'/>
 <label >Login:<input type = "text" name = "login"><br/>

@@ -11,7 +11,7 @@
             <form id="formConnexion" method="post" action="Traitementconnexion.php">
                 <input type="text" name="pseudo" placeholder="PSEUDO : prof" required />
                 <input type="password" name="pass" placeholder="MOT DE PASSE : prof" required/>
-                <input class="submit" type="submit" value="Se Connecter" />
+                <input class = "submit" type="submit" value="Se Connecter" />
             </form>
 </div>
 

@@ -15,6 +15,7 @@ else if(isset($_GET['MailExist']))
 {
 	echo('Désolé, votre adresse Mail est déjà convoitée. Veuillez utiliser une aurte adresse mail.');
 }
+
  ?>
 </form>
 </body>

@@ -22,9 +22,11 @@ $Res = mysql_query($Requete,$Connexion) or die('Erreur SQL !<br />'.$Requete.'<b
 
 if(mysql_num_rows($Res) != 0)
 {
-	$Res = mysql_fetch_array($Res);
-	print_r($Res);
-	echo("Connexion OK!!");
+	$array = mysql_fetch_array($Res);
+	session_start();
+	$_SESSION['login'] = $login;
+	$_SESSION['mail'] = $array['mail'];
+	header('Location:index.php');
 }
 else
 {

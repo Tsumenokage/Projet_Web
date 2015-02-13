@@ -9,6 +9,7 @@ $MDP="";
 
 $login = $_POST["login"];
 $mail = $_POST['email'];
+$mdp=md5($_POST['mdp']);
 
 $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db('projet_web');
@@ -24,6 +25,11 @@ if(mysql_num_rows($res)!=0)
 else if(mysql_num_rows($res2)!=0)
 {
 	header("location:inscription.php?MailExist=1");
+}
+else
+{
+	$ReqBase = 'INSERT INTO utilisateurs VALUES ($login,$mdp,$mail)';
+ 
 }
 mysql_close();
  ?>

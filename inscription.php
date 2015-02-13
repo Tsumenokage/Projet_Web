@@ -1,5 +1,4 @@
 <?php include('include/menu.php'); ?>
-
 <div id = "container">
 	<h1>Inscription au site</h1>
 	<form id="createCompte" method= 'post' action='TraiteInscription.php'/>

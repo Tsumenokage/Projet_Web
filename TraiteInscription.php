@@ -1,7 +1,6 @@
 <?php 
-//se connecter à la base 
-//requête avec un where pseudo = pseudo pour vérifier pseudo exist
-// if pseudo exist alors header location...
+// créer les variables $nomUser...
+// gérer le insert into
 $MaBase="projet_web";
 $Server = "localhost";
 $login="root";
@@ -10,6 +9,8 @@ $MDP="";
 $loginUser = $_POST["login"];
 $mailUser = $_POST['email'];
 $mdpUser=md5($_POST['mdp']);
+$nomUser=($_POST['nom']);
+$prenomUser=($_POST['prenom']);
 
 $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db($MaBase);
@@ -30,8 +31,9 @@ else if(mysql_num_rows($res2)!=0)
 }
 else
 {
-	$ReqBase = "INSERT INTO utilisateurs VALUES (null,'$loginUser','$mdpUser','$mailUser','tata','yoyo')";
+	$ReqBase = "INSERT INTO utilisateurs VALUES (null,'$loginUser','$mdpUser','$mailUser','$nomUser','$prenomUser')";
 	$Res3 = mysql_query($ReqBase,$Connexion) or die('Erreur SQL 1 !'.$ReqBase.'<br />'.mysql_error());
+	echo('Félicitation, vous êtes maintenant inscrit !');
  
 }
 mysql_close();

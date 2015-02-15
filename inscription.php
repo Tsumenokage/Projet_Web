@@ -2,6 +2,8 @@
 <div id = "container">
 	<h1>Inscription au site</h1>
 	<form id="createCompte" method= 'post' action='TraiteInscription.php'/>
+		<input type = "text" name = "nom" placeholder="Votre Nom:">
+		<input type = "text" name = "prenom" placeholder="Votre Prenom:">
 		<input type = "text" name = "login" placeholder="Pseudo">
 		<input type = "password" name = "mdp" placeholder="Mot de Passe">
 		<input type = "password" name = "mdp" placeholder="Confirmation du mot de passe">

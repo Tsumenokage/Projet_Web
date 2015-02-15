@@ -8,7 +8,8 @@ $MDP="";
 
 $loginUser = $_POST["login"];
 $mailUser = $_POST['email'];
-$mdpUser=md5($_POST['mdp']);
+$mdp1User=md5($_POST['mdp1']);
+$mdp2User=md5($_POST['mdp2']);
 $nomUser=($_POST['nom']);
 $prenomUser=($_POST['prenom']);
 
@@ -28,6 +29,12 @@ if(mysql_num_rows($res)!=0)
 else if(mysql_num_rows($res2)!=0)
 {
 	header("location:inscription.php?MailExist=1");
+}
+else if($mdp1User != $mdp2User)
+{
+	echo('Désolé, les mots de passe entrés ne correspondent pas.')
+	header("location:inscription.php");
+
 }
 else
 {

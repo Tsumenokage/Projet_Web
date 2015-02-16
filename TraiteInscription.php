@@ -32,15 +32,15 @@ else if(mysql_num_rows($res2)!=0)
 }
 else if($mdp1User != $mdp2User)
 {
-	echo('Désolé, les mots de passe entrés ne correspondent pas.')
+	echo('Désolé, les mots de passe entrés ne correspondent pas.');
 	header("location:inscription.php");
 
 }
 else
 {
-	$ReqBase = "INSERT INTO utilisateurs VALUES (null,'$loginUser','$mdpUser','$mailUser','$nomUser','$prenomUser')";
+	$ReqBase = "INSERT INTO utilisateurs VALUES (null,'$loginUser','$mdp1User','$mailUser','$nomUser','$prenomUser')";
 	$Res3 = mysql_query($ReqBase,$Connexion) or die('Erreur SQL 1 !'.$ReqBase.'<br />'.mysql_error());
-	echo('Félicitation, vous êtes maintenant inscrit !');
+	header("Location:connexion.php");
  
 }
 mysql_close();

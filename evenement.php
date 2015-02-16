@@ -2,6 +2,6 @@
 
 <div id = conatainer>
 
-<div id="Button"><a href="CreationEvenement.php">Créer un évènement</a></div>
+<a href="CreationEvenement.php"><button class="submit">Créer un évènement</button></a>
 
 </div>

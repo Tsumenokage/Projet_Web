@@ -5,6 +5,12 @@
 <div id = "container">
 	<h1>Création d'un évènement</h1>
 	<form id="createCompte" method= 'post' action='CreateEvent.php'/>
+		<?php 
+			if(isset($_GET['NameExist']))
+			{
+				echo('<p> Erreur un événement porte déjà ce nom</p>');
+			}
+		?>
 		<input type = "text" name = "nom" placeholder="Nom de l'évènement:">
 		<input type = "date" name = "date" placeholder="Date : jj/mm/aaaa">
 		<input type = "text" name = "adresse" placeholder="Adresse de l'évènement)">

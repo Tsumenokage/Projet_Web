@@ -26,6 +26,7 @@ if(mysql_num_rows($Res) != 0)
 	session_start();
 	$_SESSION['login'] = $login;
 	$_SESSION['mail'] = $array['mail'];
+	$_SESSION['idUser'] = $array['IdUtilisateur'];
 	header('Location:index.php');
 }
 else

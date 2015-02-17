@@ -1,4 +1,7 @@
-<?php include('include/menu.php'); ?>
+<?php 
+session_start();
+include('include/menu.php');
+?>
 
 <div id = conatainer>
 

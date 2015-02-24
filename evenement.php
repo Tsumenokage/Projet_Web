@@ -3,7 +3,7 @@ session_start();
 include('include/menu.php');
 ?>
 
-<div id = conatainer>
+<div id = container>
 
 <a href="CreationEvenement.php"><button class="submit">Créer un évènement</button></a>
 

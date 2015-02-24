@@ -6,7 +6,6 @@ $passUser = $_POST['pass'];
 
 $passUser = md5($passUser);
 
-echo($passUser);
 
 $Server = "localhost";
 $login="root";
@@ -16,7 +15,7 @@ $MaBase="projet_web";
 $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db($MaBase);
 
-$Requete = "SELECT * FROM utilisateurs WHERE Login = '$loginUser' AND Pasword = '$passUser'";
+$Requete = "SELECT * FROM utilisateurs WHERE Login = '$loginUser' AND Password = '$passUser'";
 $Res = mysql_query($Requete,$Connexion) or die('Erreur SQL !<br />'.$Requete.'<br />'.mysql_error());
 
 

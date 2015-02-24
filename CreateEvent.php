@@ -11,6 +11,7 @@
 	$codepostal=md5($_POST['CodePostal']);
 	$ville=($_POST['ville']);
 	$urlphoto=($_POST['urlPhoto']);
+	$description=$_POST['description'];
 
 	$idUser = $_SESSION['idUser'];
 	
@@ -27,9 +28,15 @@
 	}
 	else
 	{
-		$queryAdd = "INSERT INTO evenements VALUES (null,'$idUser','$nom','$date','$adresse','$codepostal','$ville','$urlphoto','0')";
+		$queryAdd = "INSERT INTO evenements VALUES (null,'$idUser','$nom','$date','$adresse','$codepostal','$ville','$urlphoto','0','$description')";
 		$Res3 = mysql_query($queryAdd,$Connexion) or die('Erreur SQL 1 !'.$queryAdd.'<br />'.mysql_error());
 		
+		$queryAdd2 = "Select * FROM evenements WHERE NomEvenement = '$nom'";
+		$Res4 = mysql_query($queryAdd2,$Connexion) or die('Erreur SQL 2 !'.$queryAdd2.'<br />'.mysql_error());
+		$Res4 = mysql_fetch_array($Res4);
+		print_r($Res4);
+		$urlRedirection = "PageEvenement.php?Id=".$Res4['IdEvenement'];
+		header('Location:'.$urlRedirection);
 	}
 
 ?>

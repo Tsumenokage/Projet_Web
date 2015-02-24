@@ -17,6 +17,7 @@
 		<input type = "text" name = "CodePostal" placeholder="Code Postal">
 		<input type = "text" name = "ville" placeholder="Ville">
 		<input type = "url" name = "urlPhoto" placeholder="URL Photo">
+		<textarea placeholder="Description de votre évènement" rows="10" cols="50" name="description"></textarea>
 		<input class = "submit" type = "submit" value = "Valider">	
 	</form>
 </div>

@@ -1,5 +1,5 @@
 <?php 
-¨session_start();
+session_start();
 include('include/menu.php');
 $MaBase="Projet_Web";
 $Server = "localhost";

@@ -30,13 +30,15 @@ echo("</p>");
  if(mysql_num_rows($RES)!=0)
  {
  	echo('<div id = container>
- 	 	< a href="quitGroupe.php"><button class="submit">Quitter le groupe</button></a></div>');
+ 	 	<a href="appartenirGroupe.php"><button class="submit">Appartenir à ce groupe</button></a></div>');
         
  }
  else
  {
     echo('<div id = container>
-          < a href="appartenirGroupe.php"><button class="submit">Appartenir au groupe</button></a></div>');
+        <a href="quitGroup.php"><button class="submit">Quitter le groupe</button></a></div>');
+    echo('<div id = container>
+        <a href="gestionGroupe.php"><button class="submit">Gestion du groupe</button></a></div>');
  }
 
  ?>

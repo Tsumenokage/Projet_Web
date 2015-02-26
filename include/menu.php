@@ -32,7 +32,7 @@
             </li>
         </ul>
 		<?php
-		error_reporting(0);		
+		//error_reporting(0);		
 		if(isset($_SESSION['login']))
 		{
 		$mailGrav = md5( strtolower( trim($_SESSION["mail"])));

@@ -24,9 +24,9 @@ echo("<p class='descritpion'><em>description:</em>    ".$array['description'] ."
 echo"<p class='image'><img src='".$array['imageUrl']."'/></p>";
 echo("</fieldset>");
 echo("</p>");
- //$requete="select * from appartient where IDutilisateur=$idUser";
- //$RES=mysql_query($requete,$Connexion);
- /*echo ($idUser);
+ $requete="select * from appartient where IDutilisateur=$idUser";
+ $RES=mysql_query($requete,$Connexion);
+ echo ($idUser);
  if(mysql_num_rows($RES)!=0)
  {
  	echo('<div id = container>
@@ -37,7 +37,7 @@ echo("</p>");
  {
     echo('<div id = container>
           < a href="appartenirGroupe.php"><button class="submit">Appartenir au groupe</button></a></div>');
- }*/
+ }
 
  ?>
 

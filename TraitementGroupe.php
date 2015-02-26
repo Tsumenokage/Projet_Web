@@ -3,7 +3,7 @@
 	$MaBase="Projet_Web";
 	$Server = "localhost";
 	$login="root";
-	$MDP="root";
+	$MDP="";
 
 	$nomGroupe=$_POST["nomGroupe"];
 	$description=$_POST["description"];

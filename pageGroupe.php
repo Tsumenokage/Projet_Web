@@ -5,7 +5,7 @@ include('include/menu.php');
 $MaBase="Projet_Web";
 $Server = "localhost";
 $login="root";
-$MDP="root";
+$MDP="";
 
 $idUser = $_SESSION['idUser']; 
 $IDgroupe=$_GET['IDgroupe'];

@@ -1,4 +1,8 @@
-<?php include('include/menu.php'); ?>
+<?php 
+session_start();
+include('include/menu.php'); 
+
+?>
 <div id = "container">
 	<h1>Création de groupe</h1>
 	<form id="createCompte" method= 'post' action='TraitementGroupe.php'>
@@ -7,7 +11,6 @@
 		if(isset($_GET['nomGroupeExist']))
         {   
          	echo('<p><em>Ce nom est déjà utilisé par un groupe existant.</em></p>');
-            header("location:groupes.php?");
         }
         ?>
 		<fieldset>
@@ -19,12 +22,4 @@
         </fieldset>
     </form>
 </div>
-<?php
-   if(isset($_GET['nomGroupeExist']));
-   {
-   	echo('<p>Ce nom est déjà utilisé par un groupe existant.</p>');
-    header("location:groupes.php?");
 
-   }
-   
- ?>

@@ -26,7 +26,7 @@
                 <a href="Evenement.php">Evenement</a>
             </li>
 			<li>
-				<a href="Groupes.php">Groupes</a>
+				<a href="groupes.php">Groupes</a>
             <li>
                 <a href="about.php">A propos</a>
             </li>

@@ -104,6 +104,12 @@ h3 {
     margin-left: 60px;
 }
 
+.disable {
+	background-color : lightgrey;
+
+}
+
+
 #container {
     position: relative;
     width: 980px;

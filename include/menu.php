@@ -5,6 +5,12 @@
     <title>Site de création d'évènements</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="menu.css" rel="stylesheet" type="text/css">
+	<link href="Calendrier.css" rel="stylesheet" type="text/css">
+	
+	<script src="js/jquery-1.4.3.min.js"></script>
+	<script src="js/jquery-ui-1.8.5.min.js"></script>
+	<script src="modernizr.js"></script>
+	<script src="webforms2/webforms2-p.js"></script>
 </head>
 <body>
 <header>
@@ -25,7 +31,9 @@
                 <a href="about.php">A propos</a>
             </li>
         </ul>
-		<?php if(isset($_SESSION['login']))
+		<?php
+		error_reporting(0);		
+		if(isset($_SESSION['login']))
 		{
 		$mailGrav = md5( strtolower( trim($_SESSION["mail"])));
 		echo('<img id="imageprofil" src="http://www.gravatar.com/avatar/'.$mailGrav.'?s=50" alt="Image de profil"/>');

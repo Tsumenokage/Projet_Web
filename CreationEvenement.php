@@ -12,7 +12,7 @@
 			}
 		?>
 		<input type = "text" name = "nom" placeholder="Nom de l'évènement:">
-		<input type = "date" name = "date" placeholder="Date : jj/mm/aaaa">
+		<input type = "date" name = "date" placeholder="Date : jj/mm/aaaa" id="datepicker">
 		<input type = "text" name = "adresse" placeholder="Adresse de l'évènement)">
 		<input type = "text" name = "CodePostal" placeholder="Code Postal">
 		<input type = "text" name = "ville" placeholder="Ville">
@@ -21,5 +21,23 @@
 		<input class = "submit" type = "submit" value = "Valider">	
 	</form>
 </div>
+
+<script>
+var initDatepicker = function() {
+    $('input[type=date]').each(function() {
+        var $input = $(this);
+        $input.datepicker({
+            minDate: $input.attr('min'),
+            maxDate: $input.attr('max'),
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+};
+ 
+if(!Modernizr.inputtypes.date){
+    $(document).ready(initDatepicker);
+};
+</script>
+
 </body>
 </html>

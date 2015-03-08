@@ -6,13 +6,15 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="menu.css" rel="stylesheet" type="text/css">
 	<link href="Calendrier.css" rel="stylesheet" type="text/css">
-	
-	<script src="js/jquery-1.4.3.min.js"></script>
-	<script src="js/jquery-ui-1.8.5.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>	<script src="js/ol.js"></script>
 	<script src="modernizr.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
 	<script src="webforms2/webforms2-p.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
-<body>
+<body onload="loadJSON()">
 <header>
     <div id="menu">
         <a href="index.php">

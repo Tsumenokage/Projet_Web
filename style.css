@@ -281,6 +281,18 @@ h3 {
     text-align: left;
 }
 
+table
+{
+border:1px solid black;
+border-collapse:collapse
+}
+
+td
+{
+ border:1px solid black;
+ width : 20%;
+}
+
 
 /* Select avec options */
 #searchIndex #type,
@@ -538,4 +550,12 @@ audio {
 .apparte {
     font-size: 14px;
     color: #444;
+}
+
+/* Style concernant la map OpenLayers */
+
+#map
+{
+	width : 500px;
+	height : 500px;
 }

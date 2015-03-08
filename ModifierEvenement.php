@@ -1,6 +1,12 @@
 <?php 
 	session_start();
 	include('include/menu.php');
+	if(!isset($_SESSION['idUser']))
+	{
+		echo ("<div id='error'>Vous devez être connecté pour accéder à cette page, redirection vers la page de Connexion en cours...");
+		header("Refresh: 5;URL=Connexion.php");		
+		die();
+	}
 	$IdEvenement = $_GET['IdEvenement'];
 	
 	$MaBase="projet_web";
@@ -37,7 +43,13 @@
 		<input class = 'submit' type = 'submit' value = 'Valider Modification'>	
 	
 	");
-	echo("</form>");
+	
+	echo("</form>
+		<form id='createCompte' method= 'post' action='SuppressionEvenement.php'>
+		<input type = 'text' name = 'IdEvenement' hidden value = '".$Res['IdEvenement']."'>
+		<input class = 'submit' type = 'submit' value = 'Supprimer Evènement'>	
+		</form>
+		");
 	?>
 	
 <script>

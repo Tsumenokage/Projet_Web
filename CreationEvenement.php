@@ -1,6 +1,12 @@
 <?php 
 	session_start();
-	include('include/menu.php'); 
+	include('include/menu.php');
+	if(!isset($_SESSION['idUser']))
+	{
+		echo ("<div id='error'>Vous devez être connecté pour accéder à cette page, redirection vers la page de Connexion en cours...");
+		header("Refresh: 5;URL=Connexion.php");		
+		die();
+	}
 ?>
 <div id = "container">
 	<h1>Création d'un évènement</h1>

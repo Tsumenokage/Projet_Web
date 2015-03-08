@@ -62,4 +62,134 @@
 	}
 	
 ?>
+<div id="map"><div id="popup"></div></div>
+
+
+<script>
+function loadJSON()
+{
+	var adresse = encodeURI("<?php echo $Res['Adresse']." ".$Res['CodePostal']." ".$Res['Ville']?>");
+   var data_file = "http://nominatim.openstreetmap.org/search?q="+adresse+"&format=json";
+   var http_request = new XMLHttpRequest();
+   try{
+      // Opera 8.0+, Firefox, Chrome, Safari
+      http_request = new XMLHttpRequest();
+   }catch (e){
+      // Internet Explorer Browsers
+      try{
+         http_request = new ActiveXObject("Msxml2.XMLHTTP");
+      }catch (e) {
+         try{
+            http_request = new ActiveXObject("Microsoft.XMLHTTP");
+         }catch (e){
+            // Something went wrong
+            alert("Your browser broke!");
+            return false;
+         }
+      }
+   }
+   http_request.onreadystatechange  = function(){
+      if (http_request.readyState == 4  )
+      {
+		var txt = http_request.responseText.substring(1,http_request.responseText.length-1);
+		var jsonObj = JSON.parse(txt);
+		var longi = parseFloat(jsonObj.lon)
+		var lati  = parseFloat(jsonObj.lat);
+		console.log(longi);
+		AfficherMap(longi, lati);
+		
+      }
+   }
+   http_request.open("GET", data_file, true);
+   http_request.send();
+}
+
+
+function AfficherMap(longitude,latitude)
+{
+	console.info(latitude);
+	console.info(longitude);
+	
+	var iconFeature = new ol.Feature({
+		geometry: new ol.geom.Point(ol.proj.transform([longitude, latitude], 'EPSG:4326', 'EPSG:900913')),
+		name: 'Null Island',
+	});
+	var iconStyle = new ol.style.Style({
+		image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+			anchor: [0.5, 46],
+			anchorXUnits: 'fraction',
+			anchorYUnits: 'pixels',
+			opacity: 0.75,
+			src: 'img/icon.png'
+		}))
+	});
+	
+	iconFeature.setStyle(iconStyle);
+	
+	var vectorSource = new ol.source.Vector({
+	  features: [iconFeature]
+	});
+
+	var vectorLayer = new ol.layer.Vector({
+	  source: vectorSource
+	});
+
+	
+	var map = new ol.Map({
+		view: new ol.View({
+			center: ol.proj.transform([longitude, latitude], 'EPSG:4326', 'EPSG:900913'),
+			zoom: 17
+		}),
+		layers: [
+			new ol.layer.Tile({
+				source: new ol.source.MapQuest({layer: 'osm'})
+			}),
+			vectorLayer
+		],
+		target: 'map'
+	});
+	
+	var element = document.getElementById('popup');
+	
+	var popup = new ol.Overlay({
+	  element: element,
+	  positioning: 'bottom-center',
+	  stopEvent: false
+	});
+	map.addOverlay(popup);
+	
+	
+	// display popup on click
+	map.on('click', function(evt) {
+	  var feature = map.forEachFeatureAtPixel(evt.pixel,
+		  function(feature, layer) {
+			return feature;
+		  });
+	  if (feature) {
+		var geometry = feature.getGeometry();
+		var coord = geometry.getCoordinates();
+		popup.setPosition(coord);
+		$(element).popover({
+		  'placement': 'top',
+		  'html': true,
+		  'content': feature.get('name')
+		});
+		$(element).popover('show');
+	  } else {
+		$(element).popover('destroy');
+	  }
+	});
+
+	// change mouse cursor when over marker
+	map.on('pointermove', function(e) {
+	  if (e.dragging) {
+		$(element).popover('destroy');
+		return;
+	  }
+	  var pixel = map.getEventPixel(e.originalEvent);
+	  var hit = map.hasFeatureAtPixel(pixel);
+	  //map.getTarget().style.cursor = hit ? 'pointer' : '';
+	});
+}
+</script>
 

@@ -1,0 +1,6 @@
+Reste à faire : 
+-Finir la gestion des groupes -->En cours
+-Finir la gestion des groupes (appartenances, gestion, quitter le groupe) -->En cours
+-Gérer les évènements privés liés à un groupe
+-Partie administrateur (gestion global des évènements)
+-CSS/Design de certaines parties du site à revoir

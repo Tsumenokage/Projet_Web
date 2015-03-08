@@ -1,6 +1,12 @@
 <?php
 
-
+include('include/menu.php');
+if(isset($_SESSION['idUser']))
+{
+	echo ("<div id='error'>Vous êtes déjà connecté, redirection vers la page d'Acceuil en cours...");
+	header("Refresh: 5;URL=Connexion.php");		
+	die();
+}
 $loginUser = $_POST['pseudo'];
 $passUser = $_POST['pass'];
 

@@ -211,14 +211,14 @@ h3 {
     width: 20px;
     right: 30px;
     top: 65px;
-    background: url("../img/delete.png") 0px 0px no-repeat;
+    background: url("img/delete.png") 0px 0px no-repeat;
 }
 
 #nbArticle {
     position: absolute;
     top: 50px;
     right: 0px;
-    background: url("../img/grandPanier.png") 0px 0px no-repeat;
+    background: url("img/grandPanier.png") 0px 0px no-repeat;
     height: 40px;
     width: 50px;
     padding-left: 15px;
@@ -330,7 +330,7 @@ td
     position: relative;
     display: inline-block;
     width: 160px;
-    background: url('../img/puce.png') 145px 14px no-repeat white;
+    background: url('img/puce.png') 145px 14px no-repeat white;
     border: 1px solid #CCC;
     padding: 0 4px;
     font-size: 14px;
@@ -411,7 +411,7 @@ td
     left:0;
     height: 30px;
     width: 30px;
-    background: url("../img/search.png") no-repeat scroll 9px 6px;
+    background: url("img/search.png") no-repeat scroll 9px 6px;
 }
 
 #submitImg:hover {

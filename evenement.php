@@ -13,9 +13,17 @@ mysql_select_db($MaBase);
 <div id = container>
 
 <a href="CreationEvenement.php"><button class="submit">Créer un évènement</button></a>
+<div id="searchIndex">
+	<form action="catalogue_musicien.php" method="GET" onsubmit="return testSubmit(true);" >
+						<input placeholder="Evenement..." name="nom" id ="inputNom" type="text"/>
+						
+						<input type="hidden" id="select_type" name="type" value="Tout" />
+						<input type="hidden" id="rnd_field" name="rnd" value=""/>
 
-<form>
-</form>
+                    <input type="image" value=" " id="submitImg" onclick="if (testSubmit()) return this.parentNode.submit();"/>
+
+	</form>
+</div>
 <?php
 if(isset($_SESSION['idUser']))
 {
@@ -50,3 +58,32 @@ if(isset($_SESSION['idUser']))
 
 ?>
 </div>
+
+
+            
+
+
+
+<script type="text/javascript">
+    function selectType(text, value) 
+	{
+		$('#select_type').attr('value', value);
+        $('#type span').html(text);
+    }
+	
+	function testSubmit(a) 
+	{
+        $("#rnd_field").attr("value", parseInt(Math.random() * 10000));
+        var elem = $('#inputNom');
+        if (elem.attr('value') != null && elem.attr('value').trim().length > 0) {
+            return true;
+        } 
+		else 
+		{
+            elem.addClass('inputEmpty');
+            $("#errorMessage").remove();
+            if (a) $("<p>").attr("id", "errorMessage").addClass("center").html("Veuillez saisir au moins une lettre de recherche.").appendTo("#content");
+            return false;
+        }
+    }
+</script>

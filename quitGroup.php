@@ -6,6 +6,16 @@ $Server = "localhost";
 $login="root";
 $MDP="";
 
-$idUser = $_SESSION['idUser']; 
+$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
+mysql_select_db($MaBase);
+
+$idUser = $_GET['idUser']; 
 $IDgroupe=$_GET['IDgroupe']; 
+$sql="delete from appartient where IDutilisateur=$idUser and IDgroupe=$IDgroupe";
+$query=mysql_query($sql,$Connexion)or die ('erreur SQL !'.$sql.'<br/>'.mysql_error());
+echo ('Votre demande a bien été annulée.');
+
+
+
+
  ?>

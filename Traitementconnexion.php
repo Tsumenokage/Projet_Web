@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include('include/menu.php');
 if(isset($_SESSION['idUser']))
 {
@@ -7,6 +7,7 @@ if(isset($_SESSION['idUser']))
 	header("Refresh: 5;URL=Connexion.php");		
 	die();
 }
+
 $loginUser = $_POST['pseudo'];
 $passUser = $_POST['pass'];
 
@@ -28,7 +29,6 @@ $Res = mysql_query($Requete,$Connexion) or die('Erreur SQL !<br />'.$Requete.'<b
 if(mysql_num_rows($Res) != 0)
 {
 	$array = mysql_fetch_array($Res);
-	session_start();
 	$_SESSION['login'] = $login;
 	$_SESSION['mail'] = $array['mail'];
 	$_SESSION['idUser'] = $array['IdUtilisateur'];

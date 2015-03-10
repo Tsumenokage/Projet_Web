@@ -16,6 +16,8 @@
 	$description=$_POST["description"];
 	$imageUrl=$_POST["imageUrl"];
 	$idUser = $_SESSION['idUser'];
+	$etat=1;
+	
 	$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
 	mysql_select_db($MaBase);
 
@@ -34,8 +36,9 @@
         $requete="SELECT IDgroupe from groupe where nomGroupe='$nomGroupe'";
         $query=mysql_query($requete,$Connexion)or die ('erreur SQL !'.$requete.'<br/>'.mysql_error());
         $array=mysql_fetch_array($query);
-        $inserer="INSERT INTO appartient values($idUser, $IDgroupe)";
-        $res=mysql_query($inserer,$Connexion);
+        $idGroupe= $array['IDgroupe'];
+        $inserer="INSERT INTO appartient values($idUser,$idGroupe,$etat)";
+        $res=mysql_query($inserer,$Connexion)or die ('erreur SQL !'.$inserer.'<br/>'.mysql_error()) ;
         header("location:pageGroupe.php?IDgroupe=".$array['IDgroupe']);
 	}
 

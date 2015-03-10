@@ -10,7 +10,7 @@
 	$MaBase="Projet_Web";
 	$Server = "localhost";
 	$login="root";
-	$MDP="root";
+	$MDP="";
 
 	$nomGroupe=$_POST["nomGroupe"];
 	$description=$_POST["description"];
@@ -25,6 +25,7 @@
   
 	$res=mysql_query($sql,$Connexion)or die('Erreur SQL 1 !'.$sql.'<br/>'.mysql_error());
     // S'il existe alors redirection avec message d'erreur vers la page de création de groupe
+	
 	if (mysql_num_rows($res!=0)) 
 	{
       header("location:CreationGroupe.php?nomGroupeExist=1");

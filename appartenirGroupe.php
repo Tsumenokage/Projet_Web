@@ -12,8 +12,9 @@ $IDgroupe=$_GET['IDgroupe'];
 $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db($MaBase);
 
-$sql= "insert into appartient values ($idUser,$IDgroupe,$etat)";
-$query=mysql_query($sql,$Connexion);
+$sql= "INSERT into appartient values ($idUser,$IDgroupe,0)";
+$query=mysql_query($sql,$Connexion) or die ('erreur SQL !'.$sql.'<br/>'.mysql_error());
+
 
 
 

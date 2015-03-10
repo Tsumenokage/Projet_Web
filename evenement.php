@@ -21,9 +21,8 @@ if(isset($_SESSION['idUser']))
 {
 	
 }
-else
-{	//Cette requête va récupérer les 10 évènements les plus populaires du site
 
+//Cette requête va récupérer les 10 évènements les plus populaires du site
 	$query = "SELECT * FROM evenements WHERE IdEvenement IN ( SELECT IDEvenement FROM participe GROUP BY IDEvenement ORDER BY Count(*)) LIMIT 10;";
 	$Res = mysql_query($query, $Connexion);
 	echo("<h2>Top 10 Des évènements le plus populaires</h2>");
@@ -47,8 +46,6 @@ else
 	
 	echo '</table>'; 	
 	echo "</div>";
-	
 
-}
 ?>
 </div>

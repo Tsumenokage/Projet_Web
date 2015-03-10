@@ -1,13 +1,14 @@
 <?php 
 	session_start();
 	include('include/menu.php');
+	
 	if(!isset($_SESSION['idUser']))
 	{
 		echo ("<div id='error'>Vous devez être connecté pour accéder à cette page, redirection vers la page de Connexion en cours...");
 		header("Refresh: 5;URL=Connexion.php");		
 		die();
 	}
-	
+	$IdUser = $_SESSION['idUser'];
 	
 	$MaBase="projet_web";
 	$Server = "localhost";
@@ -18,7 +19,11 @@
 	mysql_select_db($MaBase);
 	
 	
-	$query : "SELECT "
+	$sql ="SELECT DISTINCT nomGroupe FROM GROUPE INNER JOIN appartient WHERE appartient.IDutilisateur = $IdUser";
+	$res=mysql_query($sql,$Connexion)or die('Erreur SQL 1 !'.$sql.'<br/>'.mysql_error());
+
+
+	
 ?>
 <div id = "container">
 	<h1>Création d'un évènement</h1>
@@ -74,7 +79,29 @@ function Evenement()
 	{
 		alert('test2');
 		var select = document.createElement('select');
+		select.setAttribute('name','groupe');
 		document.getElementById('ListeGroupes').appendChild(select);
+		var arrayGroupe = {};
+		<?php
+		
+		$i = 1;
+		
+		while($row = mysql_fetch_assoc($res))
+		{
+			echo"arrayGroupe[".$i."]='".$row['nomGroupe']."';";
+			$i++;
+		}
+		
+		?>
+		console.info(arrayGroupe);
+		
+		for(var index in arrayGroupe)
+		{
+			    var opt = document.createElement('option');
+				opt.value = arrayGroupe[index];
+				opt.innerHTML = arrayGroupe[index];
+				select.appendChild(opt);
+		}
 	}
 	
 }

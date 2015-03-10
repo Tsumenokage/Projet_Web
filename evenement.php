@@ -23,7 +23,8 @@ if(isset($_SESSION['idUser']))
 }
 
 //Cette requête va récupérer les 10 évènements les plus populaires du site
-	$query = "SELECT * FROM evenements WHERE IdEvenement IN ( SELECT IDEvenement FROM participe GROUP BY IDEvenement ORDER BY Count(*)) LIMIT 10;";
+	$query = "SELECT * FROM evenements WHERE IdEvenement IN ( SELECT IDEvenement FROM participe GROUP BY IDEvenement ORDER BY Count(*))
+	AND IDEvenement NOT IN (SELECT IdEvenement FROM relier) AND EtatEvenement = 1 LIMIT 10;";
 	$Res = mysql_query($query, $Connexion);
 	echo("<h2>Top 10 Des évènements le plus populaires</h2>");
 	echo "<div id='tableau'>";

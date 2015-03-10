@@ -29,6 +29,16 @@
             </li>
 			<li>
 				<a href="groupes.php">Groupes</a>
+			</li>
+			<?php
+			if(isset($_SESSION['idUser']))
+			{
+			?>
+			<li>
+                <a href="gestionSite.php">Gestion</a>
+            </li>
+			<?php
+			}?>
             <li>
                 <a href="about.php">A propos</a>
             </li>

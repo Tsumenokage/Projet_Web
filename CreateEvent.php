@@ -21,7 +21,13 @@
 	$ville=($_POST['ville']);
 	$urlphoto=($_POST['urlPhoto']);
 	$description=$_POST['description'];
-
+	if(isset($_POST['groupe']))
+	{
+		$prive = true;
+		$groupe = $_POST['groupe'];
+	}
+	
+	
 	$idUser = $_SESSION['idUser'];
 	
 	$Connexion = mysql_connect($Server,$login,$MDP);
@@ -44,10 +50,21 @@
 		$Res4 = mysql_query($queryAdd2,$Connexion) or die('Erreur SQL 2 !'.$queryAdd2.'<br />'.mysql_error());
 		$Res4 = mysql_fetch_array($Res4);
 		$IdEvenement = $Res4['IdEvenement'];
-		
-		
+				
 		$queryAdd3 = "INSERT INTO participe VALUES ($idUser, $IdEvenement)";
 		mysql_query($queryAdd3,$Connexion);
+		
+		if($prive)
+		{
+			$quearySearch = "Select IdGroupe FROM Groupe WHERE NomGroupe = '$groupe'";
+			$Res5 = mysql_query($quearySearch,$Connexion) or die('Erreur SQL 3 !'.$quearySearch.'<br />'.mysql_error());
+			$Res5 = mysql_fetch_array($Res5);
+			$IdGroupe = $Res5[0];
+			
+			$queryAdd4 = "INSERT INTO relier VALUES($IdGroupe, $IdEvenement)";
+			mysql_query($queryAdd4,$Connexion) or die('Erreur SQL 4 !'.$queryAdd4.'<br />'.mysql_error());
+			
+		}
 		
 		$urlRedirection = "PageEvenement.php?Id=".$IdEvenement;
 		header('Location:'.$urlRedirection);

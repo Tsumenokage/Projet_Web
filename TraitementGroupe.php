@@ -38,7 +38,7 @@
         $query=mysql_query($requete,$Connexion)or die ('erreur SQL !'.$requete.'<br/>'.mysql_error());
         $array=mysql_fetch_array($query);
         $idGroupe= $array['IDgroupe'];
-        $inserer="INSERT INTO appartient values($idUser,$idGroupe,$etat)";
+        $inserer="INSERT INTO appartient values($idUser,$idGroupe,1)";
         $res=mysql_query($inserer,$Connexion)or die ('erreur SQL !'.$inserer.'<br/>'.mysql_error()) ;
         header("location:pageGroupe.php?IDgroupe=".$array['IDgroupe']);
 	}

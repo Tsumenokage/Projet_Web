@@ -11,9 +11,8 @@ $Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la p
 mysql_select_db($MaBase); 
 
 $idUser = $_SESSION['idUser']; 
-echo($idUser);
 $IDgroupe=$_GET['IDgroupe'];
-echo($IDgroupe);
+//echo($IDgroupe);
 $Etat=$_GET['Etat'];
 
 
@@ -21,9 +20,15 @@ $Etat=$_GET['Etat'];
 $Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
 mysql_select_db($MaBase); 
 echo("<h1>Informations concernant le groupe</h1>");
+// Requête 1
 $sql="select * from groupe where IDgroupe=$IDgroupe";
 $query=mysql_query($sql,$Connexion) or die ('erreur SQL !'.$sql.'<br/>'.mysql_error());
 $array=mysql_fetch_array($query);
+// Requête 2
+$sql2="select * from appartient where IDutilisateur=$idUser and IDgroupe=$IDgroupe";
+$resultat=mysql_query($sql2,$Connexion)or die ('erreur SQL !'.$sql2.'<br/>'.mysql_error());
+$array2=mysql_fetch_array($resultat);
+
 echo("<p class='Informations'>");
 echo("<fieldset>");
 echo("<p class='Admin'><em>Administrateur du groupe:</em>".$array['IdUtilisateur']."</p><br/>");
@@ -37,9 +42,9 @@ echo("</p>");
  {
  	
          echo('<div id = container>
-        <a href="gestionGroupe.php"><button class="submit">Gestion du groupe</button></a></div>');
+        <a href="gestionGroupe.php?IDgroupe='.$IDgroupe.'& IDutilisateur='.$idUser.'"><button class="submit">Gestion du groupe</button></a></div>');
  }
-else if($Etat==0)
+else if(isset($array2['Etat']) && $array2['Etat']==0)
 {
 	echo("Votre demande d'appartenance au groupe $IDgroupe a bien été prise en compte. En attente de traitement.");
 	echo ('<div id = container>
@@ -49,7 +54,7 @@ else if($Etat==0)
  {
     echo('<div id = container>
  	 	<a href="appartenirGroupe.php?IDgroupe='.$IDgroupe.'"><button class="submit">Appartenir à ce groupe</button></a></div>');
-   
+   echo("Votre demande d'appartenance au groupe $IDgroupe a bien été prise en compte. En attente de traitement.");
  }
 
 

@@ -5,6 +5,8 @@ if(isset($_SESSION['idUser']))
 {
 	echo ("<div id='error'>Vous êtes déjà connecté, redirection vers la page d'Acceuil en cours...");
 	header("Refresh: 5;URL=Connexion.php");		
+	include('include/footer.php');
+
 	die();
 }
 
@@ -13,11 +15,6 @@ $passUser = $_POST['pass'];
 
 $passUser = md5($passUser);
 
-
-$Server = "localhost";
-$login="root";
-$MDP="";
-$MaBase="projet_web";
 
 $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db($MaBase);

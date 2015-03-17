@@ -10,10 +10,6 @@
 	}
 	$IdUser = $_SESSION['idUser'];
 	
-	$MaBase="projet_web";
-	$Server = "localhost";
-	$login="root";
-	$MDP="";
 	
 	$Connexion = mysql_connect($Server,$login,$MDP);
 	mysql_select_db($MaBase);
@@ -107,5 +103,6 @@ function Evenement()
 }
 </script>
 
-</body>
-</html>
+<?php
+include('include/footer.php');
+?>

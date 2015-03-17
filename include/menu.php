@@ -1,3 +1,10 @@
+<?php
+	$MaBase ="Projet_Web";
+	$Server = "localhost";
+	$login  ="root";
+	$MDP    ="";
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,6 +12,7 @@
     <title>Site de création d'évènements</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="menu.css" rel="stylesheet" type="text/css">
+    <link href="footer.css" rel="stylesheet" type="text/css">
 	<link href="Calendrier.css" rel="stylesheet" type="text/css">
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>	
@@ -56,7 +64,7 @@
 		else
 		{
         echo('<a id="connectionUtilisateur" href="Connexion.php">Se connecter</a>');
-		} 
+		}
 		 ?>
     </div>
 </header>

@@ -5,14 +5,11 @@
 	if(!isset($_SESSION['idUser']))
 	{
 		echo ("<div id='error'>Vous devez être connecté pour accéder à cette page, redirection vers la page de Connexion en cours...");
-		header("Refresh: 5;URL=Connexion.php");		
+		header("Refresh: 5;URL=Connexion.php");	
+		include('include/footer.php');	
 		die();
 	}
 	
-	$MaBase="projet_web";
-	$Server = "localhost";
-	$login="root";
-	$MDP="";
 	
 	$nom = $_POST["nom"];
 	$date = $_POST['date'];
@@ -54,7 +51,7 @@
 		$queryAdd3 = "INSERT INTO participe VALUES ($idUser, $IdEvenement)";
 		mysql_query($queryAdd3,$Connexion);
 		
-		if($prive)
+		if(isset($prive))
 		{
 			$quearySearch = "Select IdGroupe FROM Groupe WHERE NomGroupe = '$groupe'";
 			$Res5 = mysql_query($quearySearch,$Connexion) or die('Erreur SQL 3 !'.$quearySearch.'<br />'.mysql_error());

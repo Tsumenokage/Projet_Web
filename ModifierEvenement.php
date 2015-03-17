@@ -9,10 +9,7 @@
 	}
 	$IdEvenement = $_GET['IdEvenement'];
 	
-	$MaBase="projet_web";
-	$Server = "localhost";
-	$login="root";
-	$MDP="";
+
 	
 	$Connexion = mysql_connect($Server,$login,$MDP);
 	mysql_select_db($MaBase);
@@ -68,6 +65,7 @@ if(!Modernizr.inputtypes.date){
     $(document).ready(initDatepicker);
 };
 </script>
-</body>
-</html>
+<?php
+include('include/footer.php');
+?>
 	

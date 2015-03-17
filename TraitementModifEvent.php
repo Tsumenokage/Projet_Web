@@ -4,15 +4,12 @@
 	if(!isset($_SESSION['idUser']))
 	{
 		echo ("<div id='error'>Vous devez être connecté pour accéder à cette page, redirection vers la page de Connexion en cours...");
-		header("Refresh: 5;URL=Connexion.php");		
+		header("Refresh: 5;URL=Connexion.php");
+		include('include/footer.php');
+		
 		die();
 	}
-	$IdEvenement = $_GET['IdEvenement'];
-	
-	$MaBase="projet_web";
-	$Server = "localhost";
-	$login="root";
-	$MDP="";
+
 	
 	$nom = $_POST["nom"];
 	$date = $_POST['date'];

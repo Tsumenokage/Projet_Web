@@ -1,10 +1,7 @@
 <?php 
 session_start();
 include('include/menu.php');
-$MaBase="Projet_Web";
-$Server = "localhost";
-$login="root";
-$MDP="root";
+
 $etat=0;
 $idUser = $_SESSION['idUser']; 
 $IDgroupe=$_GET['IDgroupe'];
@@ -25,6 +22,6 @@ $query=mysql_query($sql,$Connexion) or die ('erreur SQL !'.$sql.'<br/>'.mysql_er
 }
 
 
-
+include('include/footer.php');
 
  ?>

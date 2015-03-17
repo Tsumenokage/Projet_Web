@@ -21,4 +21,6 @@ session_start();
     </fieldset>
   </form>
 </div>
-
+<?php
+include('include/footer.php');
+?>

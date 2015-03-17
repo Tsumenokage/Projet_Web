@@ -3,10 +3,7 @@
 	include('include/menu.php');
 	$IdEvenement = $_GET['Id'];
 	
-	$MaBase="projet_web";
-	$Server = "localhost";
-	$login="root";
-	$MDP="";
+
 	
 	$Connexion = mysql_connect($Server,$login,$MDP);
 	mysql_select_db($MaBase);
@@ -65,7 +62,9 @@
 ?>
 <div id="map"><div id="popup"></div></div>
 
-
+<?php 
+include('include/footer.php');
+?>
 <script>
 function loadJSON()
 {

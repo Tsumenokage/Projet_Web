@@ -1,10 +1,6 @@
 <?php
 session_start();// VERIFIER LE FONCTIONNEMENT DE CETTE PAGE
 include('include/menu.php');
-$MaBase="Projet_Web";
-$Server = "localhost";
-$login="root";
-$MDP="";
 
 $idUser = $_SESSION['idUser']; 
 $IDgroupe=$_GET['IDgroupe'];
@@ -81,6 +77,6 @@ else
 	echo("Personne n'appartient à votre groupe.");
 
 }
-
+include('include/footer.php');
 
  ?>

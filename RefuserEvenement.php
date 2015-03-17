@@ -12,11 +12,8 @@
 		die();
 	}
 	
-	$MaBase="projet_web";
-	$Server = "localhost";
-	$login="root";
-	$MDP="";
-	
+	include('include/footer.php');
+
 	$Connexion = mysql_connect($Server,$login,$MDP);
 	mysql_select_db($MaBase);
 	
@@ -28,5 +25,6 @@
 	
 	header('Location:gestionSite.php');
 	
+
 	
 ?>

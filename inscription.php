@@ -33,5 +33,6 @@ echo'
 		 ?>
 	</form>
 </div>
-</body>
-</html>
+<?php
+include('include/footer.php');
+?>

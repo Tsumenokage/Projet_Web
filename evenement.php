@@ -1,10 +1,7 @@
 <?php 
 session_start();
 include('include/menu.php');
-$MaBase="projet_web";
-$Server = "localhost";
-$login="root";
-$MDP="";
+
 	
 $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db($MaBase);
@@ -14,12 +11,10 @@ mysql_select_db($MaBase);
 
 <a href="CreationEvenement.php"><button class="submit">Créer un évènement</button></a>
 <div id="searchIndex">
-	<form action="catalogue_musicien.php" method="GET" onsubmit="return testSubmit(true);" >
+	<form action="rechercheEvenement.php" method="GET" onsubmit="return testSubmit(true);" >
 						<input placeholder="Evenement..." name="nom" id ="inputNom" type="text"/>
 						
-						<input type="hidden" id="select_type" name="type" value="Tout" />
-						<input type="hidden" id="rnd_field" name="rnd" value=""/>
-
+						
                     <input type="image" value=" " id="submitImg" onclick="if (testSubmit()) return this.parentNode.submit();"/>
 
 	</form>
@@ -60,7 +55,9 @@ if(isset($_SESSION['idUser']))
 </div>
 
 
-            
+<?php
+include('include/footer.php');
+?>      
 
 
 
@@ -73,9 +70,9 @@ if(isset($_SESSION['idUser']))
 	
 	function testSubmit(a) 
 	{
-        $("#rnd_field").attr("value", parseInt(Math.random() * 10000));
         var elem = $('#inputNom');
-        if (elem.attr('value') != null && elem.attr('value').trim().length > 0) {
+
+        if (elem.val() != null && elem.val().trim().length > 0) {
             return true;
         } 
 		else 

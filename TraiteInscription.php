@@ -1,10 +1,7 @@
 <?php 
 // créer les variables $nomUser...
 // gérer le insert into
-$MaBase="projet_web";
-$Server = "localhost";
-$login="root";
-$MDP="";
+
 
 $loginUser = $_POST["login"];
 $mailUser = $_POST['email'];

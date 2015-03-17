@@ -1,10 +1,7 @@
 <?php 
 session_start();
 include('include/menu.php');
-$MaBase="Projet_Web";
-$Server = "localhost";
-$login="root";
-$MDP="";
+
 
 $Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
 mysql_select_db($MaBase); 
@@ -59,6 +56,6 @@ else if(isset($array2['Etat']) && $array2['Etat']==0)
    echo("Votre demande d'appartenance au groupe $IDgroupe a bien été prise en compte. En attente de traitement.");
 
  }
- 
+ include('include/footer.php');
  ?>
 

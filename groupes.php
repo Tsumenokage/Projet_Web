@@ -2,10 +2,6 @@
 
 session_start();
 include('include/menu.php');
-$MaBase="Projet_Web";
-$Server = "localhost";
-$login="root";
-$MDP="root";
 
 $idUser = $_SESSION['idUser']; 
 echo $idUser;
@@ -57,6 +53,6 @@ while($row=mysql_fetch_assoc($query))
 		echo '</tr>';
 	}
 
-
+include('include/footer.php');
 
 ?>

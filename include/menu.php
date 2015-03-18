@@ -14,6 +14,7 @@
     <link href="menu.css" rel="stylesheet" type="text/css">
     <link href="footer.css" rel="stylesheet" type="text/css">
 	<link href="Calendrier.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="module/chat.css">
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>	
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>	<script src="js/ol.js"></script>
@@ -21,6 +22,7 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
 	<script src="webforms2/webforms2-p.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script src="module/chat.js"></script>
 </head>
 <body onload="loadJSON()">
 <header>
@@ -40,6 +42,15 @@
 			</li>
 			<?php
 			if(isset($_SESSION['idUser']))
+			{
+			?>
+			<li>
+                <a href="Chat.php">Chat</a>
+            </li>
+			<?php
+			}?>			
+			<?php
+			if(isset($_SESSION['idUser']) && $_SESSION['idUser'] ==1 )
 			{
 			?>
 			<li>

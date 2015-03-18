@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 17 Mars 2015 à 23:19
+-- Généré le :  Jeu 19 Mars 2015 à 00:44
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -32,6 +32,80 @@ CREATE TABLE IF NOT EXISTS `appartient` (
   PRIMARY KEY (`IDutilisateur`,`IDgroupe`),
   KEY `ForeignKeyGroupe` (`IDgroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat_annonce`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_annonce` (
+  `annonce_id` int(11) NOT NULL AUTO_INCREMENT,
+  `annonce_text` varchar(300) CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  PRIMARY KEY (`annonce_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `chat_annonce`
+--
+
+INSERT INTO `chat_annonce` (`annonce_id`, `annonce_text`) VALUES
+(1, 'Chat du Site');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_user` int(11) NOT NULL,
+  `message_time` bigint(20) NOT NULL,
+  `message_text` varchar(255) CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  PRIMARY KEY (`message_id`),
+  KEY `message_user` (`message_user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Contenu de la table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`message_id`, `message_user`, `message_time`, `message_text`) VALUES
+(5, 1, 1426718442, 'coucou ?'),
+(6, 1, 1426718448, 'nickel'),
+(7, 1, 1426718455, 'aah '),
+(8, 1, 1426718463, 'on a pas ce qu''il faut'),
+(9, 1, 1426718469, 'pas de pseudo'),
+(10, 1, 1426718474, 'pas normal'),
+(11, 1, 1426718581, 'root '),
+(12, 1, 1426718641, 'mieux'),
+(13, 1, 1426718647, 'root '),
+(14, 1, 1426718814, 'root  2526'),
+(15, 1, 1426718827, 'root> '),
+(16, 1, 1426721254, 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat_online`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_online` (
+  `online_id` int(11) NOT NULL AUTO_INCREMENT,
+  `online_ip` varchar(100) CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  `online_user` int(11) NOT NULL,
+  `online_status` enum('0','1','2') CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  `online_time` bigint(21) NOT NULL,
+  PRIMARY KEY (`online_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Contenu de la table `chat_online`
+--
+
+INSERT INTO `chat_online` (`online_id`, `online_ip`, `online_user`, `online_status`, `online_time`) VALUES
+(14, '127.0.0.1', 1, '2', 1426722242);
 
 -- --------------------------------------------------------
 
@@ -141,8 +215,14 @@ INSERT INTO `utilisateurs` (`IdUtilisateur`, `Login`, `Password`, `mail`, `nom`,
 -- Contraintes pour la table `appartient`
 --
 ALTER TABLE `appartient`
-  ADD CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`IDgroupe`) REFERENCES `groupe` (`IDgroupe`),
-  ADD CONSTRAINT `appartient_ibfk_1` FOREIGN KEY (`IDutilisateur`) REFERENCES `utilisateurs` (`IdUtilisateur`);
+  ADD CONSTRAINT `appartient_ibfk_1` FOREIGN KEY (`IDutilisateur`) REFERENCES `utilisateurs` (`IdUtilisateur`),
+  ADD CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`IDgroupe`) REFERENCES `groupe` (`IDgroupe`);
+
+--
+-- Contraintes pour la table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+  ADD CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`message_user`) REFERENCES `utilisateurs` (`IdUtilisateur`);
 
 --
 -- Contraintes pour la table `evenements`
@@ -160,15 +240,15 @@ ALTER TABLE `groupe`
 -- Contraintes pour la table `participe`
 --
 ALTER TABLE `participe`
-  ADD CONSTRAINT `participe_ibfk_2` FOREIGN KEY (`IDevenement`) REFERENCES `evenements` (`IdEvenement`),
-  ADD CONSTRAINT `participe_ibfk_1` FOREIGN KEY (`IDutilisateur`) REFERENCES `utilisateurs` (`IdUtilisateur`);
+  ADD CONSTRAINT `participe_ibfk_1` FOREIGN KEY (`IDutilisateur`) REFERENCES `utilisateurs` (`IdUtilisateur`),
+  ADD CONSTRAINT `participe_ibfk_2` FOREIGN KEY (`IDevenement`) REFERENCES `evenements` (`IdEvenement`);
 
 --
 -- Contraintes pour la table `relier`
 --
 ALTER TABLE `relier`
-  ADD CONSTRAINT `relier_ibfk_2` FOREIGN KEY (`IDevenement`) REFERENCES `evenements` (`IdEvenement`),
-  ADD CONSTRAINT `relier_ibfk_1` FOREIGN KEY (`IDGroupe`) REFERENCES `groupe` (`IDgroupe`);
+  ADD CONSTRAINT `relier_ibfk_1` FOREIGN KEY (`IDGroupe`) REFERENCES `groupe` (`IDgroupe`),
+  ADD CONSTRAINT `relier_ibfk_2` FOREIGN KEY (`IDevenement`) REFERENCES `evenements` (`IdEvenement`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

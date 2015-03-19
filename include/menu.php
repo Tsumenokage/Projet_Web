@@ -1,9 +1,8 @@
 <?php
-	$MaBase ="Projet_Web";
-	$Server = "localhost";
-	$login  ="root";
-	$MDP    ="";
 
+include("config.php");
+
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

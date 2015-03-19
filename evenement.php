@@ -7,7 +7,7 @@ $Connexion = mysql_connect($Server,$login,$MDP);
 mysql_select_db($MaBase);
 ?>
 
-<div id = container>
+<div id = 'container'>
 
 <a href="CreationEvenement.php"><button class="submit">Créer un évènement</button></a>
 <div id="searchIndex">

@@ -51,6 +51,7 @@ td
 table
 {
     border-collapse: collapse;
+    width : 100%;
 }
 .table
 {
@@ -553,6 +554,16 @@ audio {
 .submit {
     height: 40px;
     width: 275px;
+    margin-top: 20px;
+    padding: 0 !important;
+    background: #65a192;
+    color: white;
+    cursor: pointer;
+}
+
+.Littlesubmit {
+    height: 40px;
+    width: 100px;
     margin-top: 20px;
     padding: 0 !important;
     background: #65a192;

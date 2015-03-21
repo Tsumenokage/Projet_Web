@@ -5,7 +5,7 @@
 	$IdUser = $_SESSION['idUser'];	
 
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
 	//Requete pour récupérer les informations de l'évènement
@@ -45,7 +45,9 @@
 	echo("<img src='".$Res['UrlPhoto']."' alt='Photo de évènement'/>");
 	echo("<p> Créateur de l'évènement : ".$Res2['Login']."</p>");
 	echo("<p> Description de l'évènement : ".$Res['Description']."</p>");
-	echo("<p> Date de l'évènement : ".$Res['DateEvenement']."</p>");
+	echo("<p> Début de l'évènement : ".$Res['DateEvenement']."</p>");
+	echo("<p> Fin de l'évènement : ".$Res['DateFinEvenement']."</p>");
+	echo("<p> Prix de l'évènement : ".$Res['Prix']."€</p>");
 	echo("<p> Lieu de l'évènement : ".$Res['Adresse']." ".$Res['CodePostal'].", ".$Res['Ville']."</p>");
 
 	//Récupère la liste des participants à l'évènement

@@ -13,6 +13,8 @@
 	
 	$nom = $_POST["nom"];
 	$date = $_POST['date'];
+	$dateFin = $_POST['dateFin'];
+	$prix = $_POST['prix'];
 	$adresse=$_POST['adresse'];
 	$codepostal=$_POST['CodePostal'];
 	$ville=($_POST['ville']);
@@ -20,13 +22,13 @@
 	$description=$_POST['description'];
 	$IdEvenement = $_POST['IdEvenement'];
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
-	$query = "UPDATE Evenements SET DateEvenement = '$date', Adresse = '$adresse', CodePostal = $codepostal , Ville = '$ville',
-		UrlPhoto  = '$urlphoto', Description = '$description' WHERE IdEvenement = $IdEvenement";
+	$query = "UPDATE Evenements SET DateEvenement = '$date',DateFinEvenement = '$dateFin',Adresse = '$adresse', CodePostal = $codepostal , Ville = '$ville',
+		UrlPhoto  = '$urlphoto', Description = '$description', Prix = '$prix' WHERE IdEvenement = $IdEvenement";
 	
 	mysql_query($query,$Connexion)or die('Erreur SQL !<br />'.$queryAdd.'<br />'.mysql_error());
 	
-	$urlRedirection = "ModifierEvenement.php?IdEvenement=".$IdEvenement;
+	$urlRedirection = "pageEvenement.php?Id=".$IdEvenement;
 	header('Location:'.$urlRedirection);

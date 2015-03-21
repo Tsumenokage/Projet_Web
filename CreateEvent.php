@@ -13,11 +13,13 @@
 	
 	$nom = $_POST["nom"];
 	$date = $_POST['date'];
+	$dateFin = $_POST['dateFin'];
 	$adresse=$_POST['adresse'];
 	$codepostal=$_POST['CodePostal'];
 	$ville=($_POST['ville']);
 	$urlphoto=($_POST['urlPhoto']);
 	$description=addslashes($_POST['description']);
+	$prix = $_POST['prix'];
 	if(isset($_POST['groupe']))
 	{
 		$prive = true;
@@ -27,7 +29,7 @@
 	
 	$idUser = $_SESSION['idUser'];
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
 	$query = "Select * From evenements where NomEvenement = '$nom'";
@@ -40,7 +42,7 @@
 	}
 	else
 	{
-		$queryAdd = "INSERT INTO evenements VALUES (null,'$idUser','$nom','$date','$adresse','$codepostal','$ville','$urlphoto','0','$description')";
+		$queryAdd = "INSERT INTO evenements VALUES (null,'$idUser','$nom','$date','$dateFin','$adresse','$codepostal','$ville','$urlphoto','0','$description','$prix')";
 		$Res3 = mysql_query($queryAdd,$Connexion) or die('Erreur SQL 1 !'.$queryAdd.'<br />'.mysql_error());
 				
 		$queryAdd2 = "Select * FROM evenements WHERE NomEvenement = '$nom'";

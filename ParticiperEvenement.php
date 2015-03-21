@@ -10,7 +10,7 @@
 
 	include('include/footer.php');
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
 	$IdEvenement = $_GET['IdEvenement'];

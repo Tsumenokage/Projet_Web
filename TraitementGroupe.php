@@ -16,7 +16,7 @@
 	$idUser = $_SESSION['idUser'];
 	$etat=1;
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);// Ne pas oublier cela dans la page de traitement
 	mysql_select_db($MaBase);
 
 	$sql="SELECT nomGroupe From groupe where nomGroupe = '$nomGroupe' "; // On vérifie que le nom n'existe pas déjà dans la base de données

@@ -11,7 +11,7 @@
 	$IdUser = $_SESSION['idUser'];
 	
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
 	
@@ -39,8 +39,10 @@
 		?>
 		
 		<input type = "text" name = "nom" placeholder="Nom de l'évènement:" required>
-		<input type = "date" name = "date" placeholder="Date : jj/mm/aaaa" id="datepicker" required>
-		<input type = "text" name = "adresse" placeholder="Adresse de l'évènement)" required>
+		<input type = "date" name = "date" placeholder="Début de l'évènement : jj/mm/aaaa" id="datepickerDebut" required>
+		<input type = "date" name = "dateFin" placeholder="Fin de l'évènement : jj/mm/aaaa" id="datepickerFin" required>
+		<input type = "text" name = "prix" placeholder="Prix de l'évènement (en euros)" required>
+		<input type = "text" name = "adresse" placeholder="Adresse de l'évènement" required>
 		<input type = "text" name = "CodePostal" placeholder="Code Postal" required>
 		<input type = "text" name = "ville" placeholder="Ville" required>
 		<input type = "url" name = "urlPhoto" placeholder="URL Photo" required>
@@ -51,10 +53,30 @@
 
 <script>
 var initDatepicker = function() {
-    $('input[type=date]').each(function() {
+    $('#datepickerDebut').each(function() {
         var $input = $(this);
+        var min = new Date();
         $input.datepicker({
-            minDate: $input.attr('min'),
+            minDate : new Date(min.getFullYear(),min.getMonth(),min.getDate()),
+            //minDate: $input.attr('min'),
+            maxDate: $input.attr('max'),
+            dateFormat: 'yy-mm-dd',
+            onClose : function(selectedDate)
+            {
+            	if(selectedDate != "")
+            	{
+            		$('#datepickerFin').datepicker("option","minDate", selectedDate);
+            	}
+            }
+        });
+    });
+
+    $('#datepickerFin').each(function() {
+		var $input = $(this);
+        var min = new Date();
+        $input.datepicker({
+            minDate : new Date(min.getFullYear(),min.getMonth(),min.getDate()),
+            //minDate: $input.attr('min'),
             maxDate: $input.attr('max'),
             dateFormat: 'yy-mm-dd'
         });

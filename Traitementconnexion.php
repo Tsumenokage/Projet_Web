@@ -16,7 +16,7 @@ $passUser = $_POST['pass'];
 $passUser = md5($passUser);
 
 
-$Connexion = mysql_connect($Server,$login,$MDP);
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 mysql_select_db($MaBase);
 
 $Requete = "SELECT * FROM utilisateurs WHERE Login = '$loginUser' AND Password = '$passUser'";
@@ -26,7 +26,7 @@ $Res = mysql_query($Requete,$Connexion) or die('Erreur SQL !<br />'.$Requete.'<b
 if(mysql_num_rows($Res) != 0)
 {
 	$array = mysql_fetch_array($Res);
-	$_SESSION['login'] = $login;
+	$_SESSION['login'] = $array['Login'];
 	$_SESSION['mail'] = $array['mail'];
 	$_SESSION['idUser'] = $array['IdUtilisateur'];
 	header('Location:index.php');

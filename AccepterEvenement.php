@@ -13,7 +13,7 @@
 	}
 	
 	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
 	$query = "UPDATE evenements SET EtatEvenement = 1 WHERE IdEvenement = $IdEvenement" or die();

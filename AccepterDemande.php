@@ -15,7 +15,7 @@ if(!isset($_SESSION['idUser']))
 $idUser = $_SESSION['idUser']; 
 $IDgroupe=$_GET['IDgroupe'];
 
-$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);// Ne pas oublier cela dans la page de traitement
 mysql_select_db($MaBase);
 
 $sql="UPDATE appartient

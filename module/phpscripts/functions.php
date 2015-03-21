@@ -1,22 +1,20 @@
 <?php
-
 function db_connect() {
-
     // définition des variables de connexion à la base de données   
-
+    include('../../config.php');
     try {
 
         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 
         // INFORMATIONS DE CONNEXION
 
-        $host     =     'localhost';
+        $host     =     $Server;
         
-        $dbname   =   'Projet_Web';
+        $dbname   =   $MaBase;
         
-        $user     =     'root';
+        $user     =     $LoginBD;
         
-        $password =     '';
+        $password =     $MDP;
 
         // FIN DES DONNEES
 

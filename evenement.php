@@ -3,7 +3,7 @@ session_start();
 include('include/menu.php');
 
 	
-$Connexion = mysql_connect($Server,$login,$MDP);
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 mysql_select_db($MaBase);
 ?>
 
@@ -20,10 +20,6 @@ mysql_select_db($MaBase);
 	</form>
 </div>
 <?php
-if(isset($_SESSION['idUser']))
-{
-	
-}
 
 //Cette requête va récupérer les 10 évènements les plus populaires du site
 	$query = "SELECT * FROM evenements WHERE IdEvenement IN ( SELECT IDEvenement FROM participe GROUP BY IDEvenement ORDER BY Count(*))
@@ -33,7 +29,9 @@ if(isset($_SESSION['idUser']))
 	echo "<div id='tableau'>";
 	echo '<table>';
 	echo "<th>Evènement</th>
-		<th>Date</th>
+		<th>Date de début</th>
+		<th>Date de fin</th>
+		<th>Prix</th>
 		<th>Adresse</th>
 		<th>Description</th>
 		<th>Illustration</th>";
@@ -42,6 +40,8 @@ if(isset($_SESSION['idUser']))
 		echo "<tr>";
 		echo "<td><a href='pageEvenement.php?Id=".$row['IdEvenement']."'>".$row['NomEvenement']."</a></td>";
 		echo "<td>".$row['DateEvenement']."</td>";
+		echo "<td>".$row['DateFinEvenement']."</td>";
+		echo "<td>".$row['Prix']."€</td>";
 		echo "<td>".$row['Adresse']." ".$row['CodePostal']." ".$row['Ville']."</td>";
 		echo "<td>".$row['Description']."</td>";
 		echo "<td><img src='".$row['UrlPhoto']."' height='100' width='100' /img></td>";

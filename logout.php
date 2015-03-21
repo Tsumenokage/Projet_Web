@@ -10,7 +10,9 @@ if(!isset($_SESSION['idUser']))
 }
 
 session_unset();
-
+foreach ($var as $key => $value) {
+	unset($_SESSION[$value]);
+}
 session_destroy();
 
 header('Location:index.php');

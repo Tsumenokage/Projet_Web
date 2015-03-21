@@ -10,7 +10,7 @@ $mdp2User=md5($_POST['mdp2']);
 $nomUser=($_POST['nom']);
 $prenomUser=($_POST['prenom']);
 
-$Connexion = mysql_connect($Server,$login,$MDP);
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 mysql_select_db($MaBase);
 
 $sql  = "SELECT Login FROM utilisateurs WHERE Login='$loginUser'";

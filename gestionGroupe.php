@@ -6,7 +6,7 @@ $idUser = $_SESSION['idUser'];
 $IDgroupe=$_GET['IDgroupe'];
 
 
-$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);// Ne pas oublier cela dans la page de traitement
 mysql_select_db($MaBase);
 
 //Cette requ^te va vérifier si des utlisaurs ont fait une demande d'appartenance au groupe

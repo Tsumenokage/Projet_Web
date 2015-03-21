@@ -6,7 +6,7 @@ $etat=0;
 $idUser = $_SESSION['idUser']; 
 $IDgroupe=$_GET['IDgroupe'];
 
-$Connexion = mysql_connect($Server,$login,$MDP);
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 mysql_select_db($MaBase);
 $requete="SELECT IDutilisateur FROM appartient WHERE Etat=1 AND IDgroupe=$IDgroupe ";
 $QUERY=mysql_query($requete,$Connexion)or die ('erreur SQL !'.$requete.'<br/>'.mysql_error());

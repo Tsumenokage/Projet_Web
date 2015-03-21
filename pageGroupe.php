@@ -3,16 +3,11 @@ session_start();
 include('include/menu.php');
 
 
-$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);// Ne pas oublier cela dans la page de traitement
 mysql_select_db($MaBase); 
 
 $idUser = $_SESSION['idUser']; 
 $IDgroupe=$_GET['IDgroupe'];
-
-
-$Connexion = mysql_connect($Server,$login,$MDP);// Ne pas oublier cela dans la page de traitement
-mysql_select_db($MaBase); 
-
 
 // Requête pour récuperer les informations du groupe
 $sql="SELECT * 
@@ -70,7 +65,9 @@ if($array['IdUtilisateur']==$idUser || (isset($array2['Etat']) && $array2['Etat'
 	echo "<div id='tableau'>";
 	echo '<table>';
 	echo "<th>Evènement</th>
-		<th>Date</th>
+		<th>Date de début</th>
+		<th>Date de fin</th>
+		<th>Prix</th>
 		<th>Adresse</th>
 		<th>Description</th>
 		<th>Illustration</th>";
@@ -79,6 +76,8 @@ if($array['IdUtilisateur']==$idUser || (isset($array2['Etat']) && $array2['Etat'
 		echo "<tr>";
 		echo "<td><a href='pageEvenement.php?Id=".$row['IdEvenement']."'>".$row['NomEvenement']."</a></td>";
 		echo "<td>".$row['DateEvenement']."</td>";
+		echo "<td>".$row['DateFinEvenement']."</td>";
+		echo "<td>".$row['Prix']."€</td>";
 		echo "<td>".$row['Adresse']." ".$row['CodePostal']." ".$row['Ville']."</td>";
 		echo "<td>".$row['Description']."</td>";
 		echo "<td><img src='".$row['UrlPhoto']."' height='100' width='100' /img></td>";

@@ -7,17 +7,14 @@
 		header("Refresh: 5;URL=Connexion.php");		
 		die();
 	}
-	$IdEvenement = $_GET['IdEvenement'];
-	
+	$IdEvenement = $_GET['IdEvenement'];	
 
-	
-	$Connexion = mysql_connect($Server,$login,$MDP);
+	$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 	mysql_select_db($MaBase);
 	
 	$query = "Select * FROM evenements WHERE IdEvenement = $IdEvenement";
 	$Res = mysql_query($query,$Connexion);
 	$Res = mysql_fetch_array($Res);
-
 	
 	
 	if($Res['IdUtilisateur'] != $_SESSION['idUser'])
@@ -29,15 +26,16 @@
 	echo("<form id='createCompte' method= 'post' action='TraitementModifEvent.php'>");
 	echo("		
 		<input type = 'text' name = 'nom' value='".$Res['NomEvenement']."' readonly='true' class = 'disable' required>
-		<input type = 'date' name = 'date' value='".$Res['DateEvenement']."' required>
+		<input id = 'datepickerDebut' type = 'date' name = 'date' value='".$Res['DateEvenement']."' required>
+		<input id = 'datepickerFin' 	type = 'date' name = 'dateFin' value='".$Res['DateFinEvenement']."' required>
+		<input type = 'date' name = 'prix' value='".$Res['Prix']."' required>		
 		<input type = 'text' name = 'adresse' value='".$Res['Adresse']."'>
 		<input type = 'text' name = 'CodePostal' value='".$Res['CodePostal']."' required>
 		<input type = 'text' name = 'ville' value='".$Res['Ville']."' required>
 		<input type = 'url' name = 'urlPhoto' value='".$Res['UrlPhoto']."'>
  		<textarea placeholder='Description de votre évènement' rows='10' cols='70' name='description'>".$Res['Description']."</textarea>
 		<input type = 'text' name = 'IdEvenement' hidden value = '".$Res['IdEvenement']."'required>
-		<input class = 'submit' type = 'submit' value = 'Valider Modification'required>	
-	
+		<input class = 'submit' type = 'submit' value = 'Valider Modification'required>		
 	");
 	
 	echo("</form>
@@ -50,10 +48,30 @@
 
 <script>
 var initDatepicker = function() {
-    $('input[type=date]').each(function() {
+    $('#datepickerDebut').each(function() {
         var $input = $(this);
+        var min = new Date();
         $input.datepicker({
-            minDate: $input.attr('min'),
+            minDate : new Date(min.getFullYear(),min.getMonth(),min.getDate()),
+            //minDate: $input.attr('min'),
+            maxDate: $input.attr('max'),
+            dateFormat: 'yy-mm-dd',
+            onClose : function(selectedDate)
+            {
+            	if(selectedDate != "")
+            	{
+            		$('#datepickerFin').datepicker("option","minDate", selectedDate);
+            	}
+            }
+        });
+    });
+
+    $('#datepickerFin').each(function() {
+		var $input = $(this);
+        var min = new Date();
+        $input.datepicker({
+            minDate : $('#datepickerDebut').datepicker('getDate'),
+            //minDate: $input.attr('min'),
             maxDate: $input.attr('max'),
             dateFormat: 'yy-mm-dd'
         });

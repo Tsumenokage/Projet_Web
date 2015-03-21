@@ -8,7 +8,7 @@ echo $idUser;
 
 
 
-$Connexion = mysql_connect($Server,$login,$MDP);
+$Connexion = mysql_connect($Server,$LoginBD,$MDP);
 mysql_select_db($MaBase);
 
 if(isset($_SESSION['idUser']))
@@ -28,11 +28,13 @@ echo('
 	<h2>Groupes</h2>
 	<div id="tableau">
 	<table>
-		<th>Administrateur</th>
-		<th>Nom du Groupe</th>
+		<th>Evènement</th>
+		<th>Date de début</th>
+		<th>Date de fin</th>
+		<th>Prix</th>
+		<th>Adresse</th>
 		<th>Description</th>
 		<th>Illustration</th>
-		<th>Page du Groupe</th>
 		');
 while($row=mysql_fetch_assoc($query)) 
 	{

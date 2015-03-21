@@ -1,8 +1,18 @@
 <?php
-
 include("config.php");
-
 error_reporting(0);
+$Connexion = mysql_connect($Server, $LoginBD, $MDP) or die('Connection impossible au sgbd');
+
+$queryBase = "SHOW DATABASES LIKE '$MaBase'";
+
+$Res = mysql_query($queryBase);
+
+
+if(mysql_num_rows($Res) == 0)
+{
+	header('Location:install.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -69,7 +79,7 @@ error_reporting(0);
 		{
 		$mailGrav = md5( strtolower( trim($_SESSION["mail"])));
 		echo('<img id="imageprofil" src="http://www.gravatar.com/avatar/'.$mailGrav.'?s=50" alt="Image de profil"/>');
-		echo('<a id="connectionUtilisateur">Bonjour '.$_SESSION['login'].'</a>');
+		echo('<a id="connectionUtilisateur" href="pagePerso.php?User='.$_SESSION['login'].'">Bonjour '.$_SESSION['login'].'</a>');
 		echo('<a id="connectionUtilisateur" href="logout.php">Se deconnecter</a>');
 		}
 		else

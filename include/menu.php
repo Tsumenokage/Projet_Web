@@ -24,6 +24,7 @@ error_reporting(0);
 	<script src="module/chat.js"></script>
 </head>
 <body onload="loadJSON()">
+<div class="wrapper">
 <header>
     <div id="menu">
         <a href="index.php">

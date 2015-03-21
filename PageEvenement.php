@@ -2,30 +2,58 @@
 	session_start();
 	include('include/menu.php');
 	$IdEvenement = $_GET['Id'];
-	
+	$IdUser = $_SESSION['idUser'];	
 
 	
 	$Connexion = mysql_connect($Server,$login,$MDP);
 	mysql_select_db($MaBase);
 	
-	$query = "Select * FROM Evenements WHERE IdEvenement = $IdEvenement";
+	//Requete pour récupérer les informations de l'évènement
+	$query = "SELECT * FROM Evenements WHERE IdEvenement = $IdEvenement";
 	$Res = mysql_query($query,$Connexion) or die('Erreur SQL 1 !'.$query.'<br />'.mysql_error());
 	$Res = mysql_fetch_array($Res);
-	$IdUser = $Res['IdUtilisateur'];
+	$IdUserCreator = $Res['IdUtilisateur'];
 	$IdEvenement = $Res['IdEvenement'];
+
+	//Requete pour vérifier si l'évènement est lié à un groupe
+	$queryPrive  = "SELECT * FROM relier WHERE relier.IdEvenement = $IdEvenement";
+	$ResPrive = mysql_query($queryPrive,$Connexion);
+
+	//Si il s'agit d'un évènement privé, on vérifie que l'utilisateur appartient au groupe corrspondant
+	if(mysql_num_rows($ResPrive) != 0)
+	{
+		$ArrayPrive = mysql_fetch_array($ResPrive);
+		$IdGroupe = $ArrayPrive['IDGroupe'];
+		$queryVerif = "SELECT * FROM appartient WHERE IDutilisateur = $IdUser AND IDgroupe = $IdGroupe";
+		$ResVerif = mysql_query($queryVerif,$Connexion) or die('Erreur SQL 1 !'.$queryVerif.'<br />'.mysql_error());
+		if(mysql_num_rows($ResVerif) == 0)
+		{
+			echo('Cet évènement est privé, vous ne pouvez y accéder.');
+			include('include/footer.php');
+			die();
+		}
+
+	}
 	
-	$query2 = "Select * FROM utilisateurs WHERE IdUtilisateur = '$IdUser'";
+	//Reque pour récupérer les informations de l'utilisateurs courant
+	$query2 = "SELECT * FROM utilisateurs WHERE IdUtilisateur = '$IdUser'";
 	$Res2 = mysql_query($query2,$Connexion) or die('Erreur SQL 1 !'.$query2.'<br />'.mysql_error());
 	$Res2 = mysql_fetch_array($Res2);
+
+
 	echo ("<h2>".$Res['NomEvenement']."</h2>");
 	echo("<img src='".$Res['UrlPhoto']."' alt='Photo de évènement'/>");
 	echo("<p> Créateur de l'évènement : ".$Res2['Login']."</p>");
 	echo("<p> Description de l'évènement : ".$Res['Description']."</p>");
 	echo("<p> Date de l'évènement : ".$Res['DateEvenement']."</p>");
 	echo("<p> Lieu de l'évènement : ".$Res['Adresse']." ".$Res['CodePostal'].", ".$Res['Ville']."</p>");
-	$queryUser = "Select * From Utilisateurs NATURAL JOIN participe WHERE participe.IdEvenement = $IdEvenement";
+
+	//Récupère la liste des participants à l'évènement
+	$queryUser = "SELECT * FROM Utilisateurs NATURAL JOIN participe WHERE participe.IdEvenement = $IdEvenement";
 	$Res3 = mysql_query($queryUser, $Connexion) or die('Erreur SQL 1 !'.$queryUser.'<br />'.mysql_error());
 ?>
+
+
 <div id="Participants">
 <h3>Participants</h3>
 <?php

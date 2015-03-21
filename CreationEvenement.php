@@ -38,13 +38,13 @@
 			}
 		?>
 		
-		<input type = "text" name = "nom" placeholder="Nom de l'évènement:">
-		<input type = "date" name = "date" placeholder="Date : jj/mm/aaaa" id="datepicker">
-		<input type = "text" name = "adresse" placeholder="Adresse de l'évènement)">
-		<input type = "text" name = "CodePostal" placeholder="Code Postal">
-		<input type = "text" name = "ville" placeholder="Ville">
-		<input type = "url" name = "urlPhoto" placeholder="URL Photo">
-		<textarea placeholder="Description de votre évènement" rows="10" cols="50" name="description"></textarea>
+		<input type = "text" name = "nom" placeholder="Nom de l'évènement:" required>
+		<input type = "date" name = "date" placeholder="Date : jj/mm/aaaa" id="datepicker" required>
+		<input type = "text" name = "adresse" placeholder="Adresse de l'évènement)" required>
+		<input type = "text" name = "CodePostal" placeholder="Code Postal" required>
+		<input type = "text" name = "ville" placeholder="Ville" required>
+		<input type = "url" name = "urlPhoto" placeholder="URL Photo" required>
+		<textarea placeholder="Description de votre évènement" rows="10" cols="70" name="description"></textarea>
 		<input class = "submit" type = "submit" value = "Valider">	
 	</form>
 </div>
@@ -69,13 +69,14 @@ function Evenement()
 {
 	if(document.getElementById('public').checked)
 	{
-		alert('test');
+		document.getElementById('ListeGroupes').innerHTML = "";
 	}
 	else
 	{
-		alert('test2');
+		document.getElementById('ListeGroupes').innerHTML = "";
 		var select = document.createElement('select');
 		select.setAttribute('name','groupe');
+		select.setAttribute('id','selectGroup');
 		document.getElementById('ListeGroupes').appendChild(select);
 		var arrayGroupe = {};
 		<?php

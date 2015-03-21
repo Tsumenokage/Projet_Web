@@ -20,6 +20,8 @@ if(isset($_SESSION['idUser']))
 }
 
 
+
+//Affichage des différents groupes
 $sql="SELECT * FROM groupe INNER JOIN utilisateurs ON groupe.IdUtilisateur = utilisateurs.IdUtilisateur ";
 $query=mysql_query($sql,$Connexion);
 echo('
@@ -45,6 +47,9 @@ while($row=mysql_fetch_assoc($query))
 	echo('</table>');
 	echo('</div>');
 	echo('</div>');	
+
+
+
 
 include('include/footer.php');
 

@@ -17,7 +17,7 @@
 	$codepostal=$_POST['CodePostal'];
 	$ville=($_POST['ville']);
 	$urlphoto=($_POST['urlPhoto']);
-	$description=$_POST['description'];
+	$description=addslashes($_POST['description']);
 	if(isset($_POST['groupe']))
 	{
 		$prive = true;

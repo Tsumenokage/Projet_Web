@@ -103,6 +103,7 @@ $(document).ready(function() {
 function getOnlineUsers() {
 	// On lance la requête ajax
 	$.getJSON('module/phpscripts/get-online.php', function(data) {
+		
 		// Si data['error'] renvoi 0, alors ça veut dire que personne n'est en ligne
 		// ce qui n'est pas normal d'ailleurs
 		if(data['error'] == '0') {		
